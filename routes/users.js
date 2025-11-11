@@ -2,6 +2,7 @@
 const express = require("express")
 const router = express.Router()
 
+//Register Route
 router.get('/register', function (req, res, next) {
     res.render('register.ejs')
 })
@@ -13,3 +14,4 @@ router.post('/registered', function (req, res, next) {
 
 // Export the router object so index.js can access it
 module.exports = router
+
