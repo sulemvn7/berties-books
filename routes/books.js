@@ -78,7 +78,4 @@ router.post('/bookadded', function (req, res, next) {
 module.exports = router
 
 
-// Export the router object so index.js can access it
-module.exports = router
-
 
