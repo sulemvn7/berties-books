@@ -19,9 +19,10 @@ router.get('/list', function(req, res, next) {
             if (err) {
                 next(err)
             }
-            res.send(result)
+            res.render("list.ejs", { availableBooks: result })
          });
     });
 
 // Export the router object so index.js can access it
 module.exports = router
+
