@@ -2,14 +2,30 @@
 const express = require("express");
 const router = express.Router();
 
-// Search Route
-router.get('/search', function(req, res, next){
-    res.render("search.ejs");
+// Search Route - show form
+router.get('/search', function(req, res, next) {
+    res.render('search.ejs', { booklist: [], keyword: '' });
 });
 
-router.get('/search-result', function (req, res, next) {
-    res.send("You searched for: " + req.query.keyword);
+// Handle search request (basic + advanced)
+router.post('/search', function(req, res, next) {
+    let keyword = req.body.keyword;
+
+    // Basic (exact match):
+    // let sqlquery = "SELECT * FROM books WHERE name = ?";
+
+    // Advanced (partial match):
+    let sqlquery = "SELECT * FROM books WHERE name LIKE ?";
+
+    db.query(sqlquery, ['%' + keyword + '%'], (err, result) => {
+        if (err) {
+            next(err);
+        } else {
+            res.render('search.ejs', { booklist: result, keyword: keyword });
+        }
+    });
 });
+
 
 // Book Display Route
 router.get('/list', function(req, res, next) {
@@ -51,4 +67,5 @@ router.get('/bargainbooks', function(req, res, next) {
 
 // Export the router
 module.exports = router;
+
 
