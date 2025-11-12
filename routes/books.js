@@ -48,8 +48,8 @@ router.post('/bookadded', function (req, res, next) {
 
     db.query(sqlquery, newrecord, (err, result) => {
         if (err) return next(err);
-        // Redirect to the list page after adding
-        res.redirect('/books/list');
+       res.send('✅ This book has been added to the database.<br>Name: ' 
+         + req.body.name + '<br>Price: £' + Number(req.body.price).toFixed(2));
     });
 });
 
@@ -68,6 +68,7 @@ router.get('/bargainbooks', function(req, res, next) {
 
 // Export the router
 module.exports = router;
+
 
 
 
