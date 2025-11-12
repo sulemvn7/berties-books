@@ -34,7 +34,8 @@ HTML / CSS
 
 💻 Installation 
 1.Clone your github repository: git clone <your repositiory link>. 
-2.Install depedencies using npm install. 
+2.Install dependencies using npm install. 
 3.Run node index.js to access the Berties Books App.
+
 
 
