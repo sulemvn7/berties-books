@@ -37,5 +37,18 @@ router.post('/bookadded', function (req, res, next) {
     });
 });
 
+// Bargain Books Route
+router.get('/bargainbooks', function(req, res, next) {
+    let sqlquery = "SELECT * FROM books WHERE price < 20"; // select cheap books
+    db.query(sqlquery, (err, result) => {
+        if (err) {
+            next(err);
+        } else {
+            res.render("bargainbooks.ejs", { bargainBooks: result });
+        }
+    });
+});
+
 // Export the router
 module.exports = router;
+
